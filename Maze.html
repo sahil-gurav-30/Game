@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no" />
+  <title>Survival Chase</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/style2.css') }}" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link href="https://fonts.googleapis.com/css2?family=Share+Tech+Mono&family=Orbitron:wght@500;800&display=swap" rel="stylesheet" />
+</head>
+<body>
+
+  <!-- ── Scanline overlay for CRT feel ──────────────────────────── -->
+  <div class="scanlines" aria-hidden="true"></div>
+
+  <div class="shell">
+
+    <!-- ── Header ──────────────────────────────────────────────── -->
+    <header class="hud-header">
+      <div class="title-block">
+        <span class="title-main">SURVIVAL</span>
+        <span class="title-sub">CHASE</span>
+      </div>
+      <div class="hud-stats">
+        <div class="stat-chip" id="stat-moves">
+          <span class="stat-label">MOVES</span>
+          <span class="stat-val" id="move-count">0</span>
+        </div>
+        <div class="stat-chip" id="stat-status">
+          <span class="stat-label">STATUS</span>
+          <span class="stat-val" id="game-status">READY</span>
+        </div>
+      </div>
+    </header>
+
+    <!-- ── Legend ─────────────────────────────────────────────── -->
+    <div class="legend">
+      <span class="legend-item"><span class="dot dot-player"></span>YOU</span>
+      <span class="legend-item"><span class="dot dot-enemy-chase"></span>CHASING</span>
+      <span class="legend-item"><span class="dot dot-enemy-wander"></span>WANDERING</span>
+      <span class="legend-item"><span class="dot dot-exit"></span>EXIT</span>
+    </div>
+
+    <!-- ── Canvas ─────────────────────────────────────────────── -->
+    <div class="canvas-wrapper">
+      <canvas id="gameCanvas"></canvas>
+
+      <!-- Overlay panel (shown on game-over / win) -->
+      <div class="overlay" id="overlay" hidden>
+        <div class="overlay-box">
+          <div class="overlay-icon" id="overlay-icon">💀</div>
+          <div class="overlay-title" id="overlay-title">ELIMINATED</div>
+          <div class="overlay-sub" id="overlay-sub">The enemies caught you.</div>
+          <button class="btn-restart" id="btn-restart">▶ NEW GAME</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- ── Mobile D-Pad ───────────────────────────────────────── -->
+    <div class="dpad-wrapper" aria-label="Directional controls">
+      <div class="dpad">
+        <button class="dpad-btn dpad-up"    data-dir="up"    aria-label="Move up">▲</button>
+        <button class="dpad-btn dpad-left"  data-dir="left"  aria-label="Move left">◀</button>
+        <div    class="dpad-center"                          aria-hidden="true"></div>
+        <button class="dpad-btn dpad-right" data-dir="right" aria-label="Move right">▶</button>
+        <button class="dpad-btn dpad-down"  data-dir="down"  aria-label="Move down">▼</button>
+      </div>
+    </div>
+
+    <!-- ── Keyboard hint (hidden on small screens) ────────────── -->
+    <p class="kbd-hint">
+      Use <kbd>↑</kbd><kbd>↓</kbd><kbd>←</kbd><kbd>→</kbd> or <kbd>W</kbd><kbd>A</kbd><kbd>S</kbd><kbd>D</kbd> to move
+    </p>
+
+  </div><!-- /.shell -->
+
+  <script src="{{ url_for('static', filename='js/maze.js') }}"></script>
+</body>
+</html>
